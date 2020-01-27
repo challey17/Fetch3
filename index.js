@@ -1,7 +1,9 @@
 "use strict";
 
 function getDogImage() {
-  fetch("https://dog.ceo/api/breeds/image/random")
+  let breed = $('input[name="breed"]').val();
+
+  fetch(`https://dog.ceo/api/breed/${breed}/images/random`)
     .then(response => response.json())
     .then(responseJson => displayResults(responseJson))
     .catch(error => alert("Something went wrong. Try again later."));
@@ -9,12 +11,18 @@ function getDogImage() {
 
 function displayResults(responseJson) {
   console.log(responseJson);
-  //replace the existing image with the new one
-  $(".results-img").replaceWith(
-    `<img src="${responseJson.message}" class="results-img">`
-  );
-  //display the results section
-  $(".results").removeClass("hidden");
+  //check for error, no error then load image
+  if (
+    responseJson.message === "Breed not found (master breed does not exist)"
+  ) {
+    alert("That breed wasn't found, please try another or check spelling.");
+  } else {
+    $(".results-img").replaceWith(
+      `<img src="${responseJson.message}" class="results-img">`
+    );
+    //display the results section
+    $(".results").removeClass("hidden");
+  }
 }
 
 function watchForm() {

@@ -12,6 +12,8 @@ section {
 }
 
 img {
+  max-width: 45%;
+
   display: block;
   padding-top: 10px;
 }
