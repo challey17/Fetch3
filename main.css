@@ -1,0 +1,17 @@
+* {
+  box-sizing: border-box;
+}
+
+section {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.hidden {
+  display: none;
+}
+
+img {
+  display: block;
+  padding-top: 10px;
+}
